@@ -11,7 +11,9 @@ $(() => {
   `);
 
   var renderTodo = (todo) => {
-    return template(todo);
+    if (todo.text) {
+      return template(todo);
+    }
   };
 
   var addTodo = (todo) => {
@@ -60,5 +62,4 @@ $(() => {
 
   console.log('CRUDdy Todo client is running the browser');
   Todo.readAll(addAllTodos);
-
 });

@@ -15,6 +15,8 @@ const zeroPaddedNumber = (num) => {
   return sprintf('%05d', num);
 };
 
+//example: zeroPaddedNumber(6);return sprintf('%05d', 6) // '00006'; 5digits.
+
 const readCounter = (callback) => {
   fs.readFile(exports.counterFile, (err, fileData) => {
     if (err) {
@@ -38,9 +40,16 @@ const writeCounter = (count, callback) => {
 
 // Public API - Fix this function //////////////////////////////////////////////
 
-exports.getNextUniqueId = () => {
-  counter = counter + 1;
-  return zeroPaddedNumber(counter);
+//we passed in a callback parameter untill we get the answer
+exports.getNextUniqueId = (callback) => {
+  //when we invoke the readCounter, we can get the number fileData, we pass it into callback (err, fileData) => {},then we invoke writeCounter function,
+  //we can get the couterString from writeCounter, we pass it into the callback function, that counter String is what we want to write it into the file.
+  readCounter((err, fileData) => {
+    //if there is non file exist there, we need to pass 0 into the callback.
+    //else we need to increase count by 1 into our counter and return that counter
+    writeCounter(fileData + 1, (err, counterString) => callback(err, counterString)
+    );
+  });
 };
 
 

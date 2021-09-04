@@ -19,7 +19,9 @@
   "dependencies": {
     "bluebird": "^3.7.2",
     "express": "^4.17.1",
+    "mongodb": "^4.1.1",
     "morgan": "^1.10.0",
+    "promise": "^8.1.0",
     "sprintf-js": "^1.1.2",
     "underscore": "^1.11.0"
   },
